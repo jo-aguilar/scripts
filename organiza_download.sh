@@ -33,8 +33,9 @@ caminho=" "
 cd "$download_dir"
 
 organiza(){
-	condicao=`find . -type f '-name' '$extensao'`
-	if [ ${#condicao[@]} -gt 0 ]; then
+	exec 2>/dev/null
+	condicao=`ls ${extensao}`
+	if [ ${#condicao} -gt 0 ]; then
 		mv ${extensao} ${caminho}
 		echo "$extensao movido para $caminho"
 	else
