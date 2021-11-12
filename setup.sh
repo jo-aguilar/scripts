@@ -9,7 +9,7 @@ sudo apt-get install -y git
 sudo apt-get install -y rpl
 HOME=~
 DIR="/conio.h/"
-if [ ! -d "$HOME$DIR" ]
+if [ ! -d "$HOME$DIR" ]; then
     git clone https://github.com/zoelabbb/conio.h
     sudo scp ~/conio.h/conio.h /usr/include/
 fi
