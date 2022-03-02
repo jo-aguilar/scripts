@@ -8,6 +8,7 @@ sudo apt-get install -y tmux
 sudo apt-get install -y git
 sudo apt-get install -y rpl
 sudo apt-get install -y gdb
+sudo apt-get install -y rakudo
 HOME=~
 DIR="/conio.h/"
 if [ ! -d "$HOME$DIR" ]; then
