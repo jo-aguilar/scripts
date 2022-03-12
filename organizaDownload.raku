@@ -9,16 +9,15 @@ my $pathDownload = $*HOME.IO.add('Downloads').IO;
 my $ImgsFolder   = $pathDownload.add("Imagens").IO;
 my $PckgFolder   = $pathDownload.add("Pacotes").IO;
 my $DocsFolder   = $pathDownload.add("Documentos").IO;
+my $formatoImgs  = <.jpeg .jpg .png>;
+my $formatoDocs  = <.pdf .docx .doc .txt .odf .odt .ods .odg>;
+my $formatoPack  = <.exe .sh .AppImage .iso>;
 
 sub retornaExtens (Str:D $entrada) {
 #retorna a extensão de um elemento de string caso ele seja um
 #arquivo passível de extensibilidade, retornando False quando 
 #o arquivo não possui qualquer sinal de ter uma extensão
-	my $formatoImgs  = <.jpeg .jpg .png>;
-	my $formatoDocs  = <.pdf .docx .doc .txt .odf .odt .ods .odg>;
-	my $formatoPack  = <.exe .sh .AppImage .iso>;
 	CATCH { return False; }
-
 	my $interstr = $entrada.flip;
 	$interstr   = $interstr.substr(0, $interstr.index('.')) ~ '.';
 	return $interstr.flip;
