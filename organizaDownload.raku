@@ -18,9 +18,9 @@ sub retornaExtens (Str:D $entrada) {
 #arquivo passível de extensibilidade, retornando False quando 
 #o arquivo não possui qualquer sinal de ter uma extensão
 	CATCH { return False; }
-	my $indice = $entrada.index('.');     
-	my $extens = $entrada.chars.Int - $indice.Int;
-	return $entrada.substr: $indice, $extens;
+	my $interstr = $entrada.flip;
+	$interstr   = $interstr.substr(0, $interstr.index('.'));
+	return $interstr.flip;
 }
 
 sub subMoveArquivo(IO:D $entrada, IO:D $nome, IO:D $Folder) {
