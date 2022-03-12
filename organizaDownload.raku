@@ -1,4 +1,4 @@
-#!/usr/bin/env perl6
+#!/usr/bin/env raku
 
 =begin comment
 Organiza a pasta /home/usr/Downloads/ de acordo com os documentos
@@ -52,7 +52,7 @@ sub removeFolder ( IO:D $Folder ) {
 #ela é apagada para ser recriada novamente apenas quando for usada
 	if ( $Folder.e && dir($Folder).elems==0 ) { 
 		put Q :c /{$Folder.basename} está vazio e será removido.../;
-		rmdir $ImgsFolder;
+		rmdir $Folder;
 		}
 }
 
@@ -63,8 +63,23 @@ sub MAIN {
 	removeFolder($DocsFolder);
 	removeFolder($PckgFolder);
 
-	loop (my $clk = 0; $clk < $listaDownload.elems; $clk++) { 
-		my $retorno = moveArquivo($listaDownload[$clk]);
-		put Q :c /[???] Não foi possível mover {$listaDownload[$clk]}\n/ if $retorno==False;
+	loop (my $clk = 0; $clk < $listaDownload.elems; $clk++) {
+		if $listaDownload[$clk].d { next; }
+		else	{
+			my $retorno = moveArquivo($listaDownload[$clk]);
+			put Q :c /[???] Não foi possível mover {$listaDownload[$clk]}\n/ if $retorno==False;
 		}
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
