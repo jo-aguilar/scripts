@@ -13,6 +13,7 @@ sub detectaEntrada (Str:D $entrada, Str:D $extensao) {
 	my $any = $entrada, do {
 		if    $extensao (elem) <raku perl6>     { '.raku' }
 		elsif $extensao (elem) <shell sh bash>  { '.sh'   }
+		elsif $extensao (elem) <python py>      { '.py'   }
 	}
 	return  ($any (elem) @arquivos) ?? True !! False;
 }
@@ -31,12 +32,16 @@ sub criaArquivo (Str:D $entrada, Str:D $extensao) {
 		$arquivo = $arquivo ~ '.sh';
 		spurt $arquivo, "#!/usr/bin/bash\n\n\n";
 	}
+	if ($extensao (elem) <python py>) {
+		$arquivo = $arquivo ~ '.py';
+		spurt $arquivo, "#!/usr/bin/env python\n\n\n";
+	}
 	shell "chmod +x $arquivo";
 	shell "vim $arquivo";
 }
 
 sub MAIN (*@ARGS) {
-	my @extens = <perl6 raku shell sh bash>;
+	my @extens = <perl6 raku shell sh bash python py>;
 	if ( (@ARGS.elems==2) and !(@ARGS[1] (elem) @extens) ) { 
 		put q :heredoc/END/;
 		    [!!!] Combinação inválida de argumentos.
