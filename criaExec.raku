@@ -34,7 +34,7 @@ sub criaArquivo (Str:D $entrada, Str:D $extensao) {
 	}
 	if ($extensao (elem) <python py>) {
 		$arquivo = $arquivo ~ '.py';
-		spurt $arquivo, "#!/usr/bin/env python\n\n\n";
+		spurt $arquivo, "#!/usr/bin/env python3\n\n\n";
 	}
 	shell "chmod +x $arquivo";
 	shell "vim $arquivo";
